@@ -1,11 +1,13 @@
 import axios from "axios";
 import "dotenv/config";
-
+import bcrypt from "bcrypt";
 import { getUsers } from "./utils/getUsers.js";
 import { userDBPath } from "./utils/dataPath.js";
+import { getSaltRounds } from "./utils/getSalts.js";
 
 export async function register(req, res) {
   const { username, password } = req.body;
+  console.log(password);
   try {
     const users = await getUsers();
 
@@ -30,9 +32,14 @@ export async function register(req, res) {
         });
         return;
       } else {
+        const saltRounds = await getSaltRounds();
+        console.log(saltRounds);
+
+        const hashedPassword = await bcrypt.hash(password, saltRounds);
+
         await axios.post(userDBPath, {
           username: username,
-          password: password,
+          password: hashedPassword,
         });
         res
           .status(200)
