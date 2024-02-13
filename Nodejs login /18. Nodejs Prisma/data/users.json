@@ -1,0 +1,20 @@
+[
+    {
+        "name": "Cody Thompson",
+        "age": 71,
+        "email": "jose68@example.com",
+        "address": "0532 Jones Turnpike Apt. 768\nGlennfort, TX 57989"
+    },
+    {
+        "name": "Wanda Sullivan",
+        "age": 65,
+        "email": "eholder@example.net",
+        "address": "7805 Donna Shoal\nNew Melissaborough, MP 68276"
+    },
+    {
+        "name": "Joseph Jensen",
+        "age": 52,
+        "email": "douglasclark@example.net",
+        "address": "877 Anderson Vista Suite 933\nWest Doris, OR 47442"
+    }
+]

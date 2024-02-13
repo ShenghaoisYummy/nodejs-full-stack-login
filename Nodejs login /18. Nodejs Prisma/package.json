@@ -1,0 +1,27 @@
+{
+  "name": "nodejs_demo_2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "prisma:init": "pnpx prisma init",
+    "prisma:migrate": "pnpx prisma migrate dev --name init",
+    "prisma:studio": "pnpx prisma studio",
+    "python:gen_users": "python3 generate_users.py"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@prisma/client": "^5.8.0",
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "prisma": "^5.8.0"
+  }
+}
