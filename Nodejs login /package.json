@@ -1,0 +1,18 @@
+{
+  "name": "login",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "install:frontend": "cd frontend && npm install",
+    "install:backend": "cd backend && npm install",
+    "install:database": "cd database && npm install",
+    "start:frontend": "cd frontend && npm run dev",
+    "start:backend": "cd backend && npm run start",
+    "start:database": "cd database && npm run db",
+    "dev": "npm run start:database & npm run start:frontend & npm run start:backend",
+    "setup": "npm run install:frontend && npm run install:backend&& npm run install:database"
+  },
+  "author": "",
+  "license": "ISC"
+}
