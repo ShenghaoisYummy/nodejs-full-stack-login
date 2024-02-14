@@ -1,0 +1,15 @@
+{
+  "name": "utils",
+  "version": "1.0.0",
+  "description": "",
+  "main": "secret.js",
+  "scripts": {
+    "gen_secret": "node ./src/secret.js"
+  },
+  "author": "",
+  "license": "MIT",
+  "type":"module",
+  "dependencies": {
+    "crypto": "^1.0.1"
+  }
+}
