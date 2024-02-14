@@ -1,5 +1,6 @@
 import axios from "axios";
 import "dotenv/config";
+import bcrypt from "bcrypt";
 
 import { getUsers } from "./utils/getUsers.js";
 
@@ -11,14 +12,18 @@ export async function login(req, res) {
     res.status(500).json({ message: "No user found", code: 2 });
     return;
   } else {
-    const user = users.find(
-      (user) => user.username === username && user.password === password
-    );
+    const user = users.find((user) => user.username === username);
 
     if (!user) {
       res.status(500).json({ message: "No user found 2", code: 1 });
       return;
     } else {
+      const match = await bcrypt.compare(password, user.password);
+      if (!match) {
+        res.status(401).json({ message: "Password not match", code: 3 });
+        return;
+      }
+
       res.status(200).json({ message: "Login success", code: 0 });
     }
   }
