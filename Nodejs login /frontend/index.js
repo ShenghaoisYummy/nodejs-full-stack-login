@@ -17,10 +17,7 @@ const toRegisterBtnFunc = (event) => {
 };
 
 dom.toLoginBtn.addEventListener("click", toLoginBtnFunc);
-dom.toRegisterBtn.addEventListener(
-  "click",
-  toRegisterBtnFunc
-);
+dom.toRegisterBtn.addEventListener("click", toRegisterBtnFunc);
 
 dom.loginBtn.addEventListener("click", login);
 dom.registerBtn.addEventListener("click", register);
@@ -28,12 +25,7 @@ dom.signOutBtn.addEventListener("click", signOut);
 
 async function login(event) {
   event.preventDefault();
-  if (
-    utils.isInputHasContext([
-      dom.username,
-      dom.password,
-    ]) === 1
-  ) {
+  if (utils.isInputHasContext([dom.username, dom.password]) === 1) {
     animation.showError();
     return;
   }
@@ -45,6 +37,8 @@ async function login(event) {
         password: dom.password.value,
       })
       .then((res) => res.data);
+
+    console.log(response);
 
     if (response.code === 0) {
       dom.welcomeUsername.textContent = dom.username.value;
@@ -80,9 +74,7 @@ async function register(event) {
     return;
   } else if (code === -1) {
     console.log("Error, domList is empty");
-  } else if (
-    dom.password_one.value !== dom.password_two.value
-  ) {
+  } else if (dom.password_one.value !== dom.password_two.value) {
     animation.showError();
     return;
   } else {

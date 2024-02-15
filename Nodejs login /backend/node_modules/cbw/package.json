@@ -1,0 +1,19 @@
+{
+  "name": "cbw",
+  "version": "0.0.1",
+  "description": "callback wrapper",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha -R spec"
+  },
+  "keywords": [
+    "callback",
+    "wrapper",
+    "err"
+  ],
+  "author": "Dmitry Shirokov <deadrunk@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "mocha": "^2.2.1"
+  }
+}
