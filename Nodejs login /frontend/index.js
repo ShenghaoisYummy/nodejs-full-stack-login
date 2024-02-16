@@ -45,6 +45,7 @@ async function login(event) {
       utils.clearDomValue([dom.username, dom.password]);
       animation.showCorrect();
       animation.LoginToWelcome();
+      response.token && localStorage.setItem("token", response.token);
     }
   } catch (error) {
     // console.log(error);
@@ -126,4 +127,5 @@ async function signOut(event) {
     dom.welcomeUsername,
   ]);
   animation.WelcomeToLogin();
+  localStorage.removeItem("token");
 }

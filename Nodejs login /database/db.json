@@ -74,6 +74,11 @@
       "id": "4894",
       "username": "123",
       "password": "$2b$07$btevx14JoguVirgHlzS4z.6uZ1MBn9aSDut8kx6TqIFwkDvrVKNd2"
+    },
+    {
+      "id": "688d",
+      "username": "1234",
+      "password": "$2b$07$dRiXJ0cRyXye9OKFa36q..vbDbQyV8tSchd6dLinIdnw43p.S/3.G"
     }
   ],
   "bcrypt": [
