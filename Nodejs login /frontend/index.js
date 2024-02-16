@@ -129,3 +129,30 @@ async function signOut(event) {
   animation.WelcomeToLogin();
   localStorage.removeItem("token");
 }
+
+async function checkToken() {
+  const token = localStorage.getItem("token");
+  if (!token) return;
+
+  const configuration = {
+    headers: {
+      "Content-Type": "application/json", // Specifies the content type of the request body
+      authorization: `Bearer ${token}`, // Example of including an authorization token
+    },
+  };
+  try {
+    const response = await axios
+      .post(backendPath + "/api/login", { message: "token" }, configuration)
+      .then((res) => res.data);
+
+    if (response.code === 0) {
+      dom.welcomeUsername.textContent = response.username;
+      animation.LoginToWelcome;
+      response.token && localStorage.setItem("token", response.token);
+    }
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+checkToken();

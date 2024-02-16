@@ -3,8 +3,10 @@ import cors from "cors";
 import ip from "ip";
 import bodyParser from "body-parser";
 import "dotenv/config";
+
 import { login } from "./src/login.js";
 import { register } from "./src/register.js";
+import { authToken } from "./src/auth/authToken.js";
 
 const app = express();
 app.use(cors({ origin: "*" }));
@@ -13,7 +15,7 @@ const jsonParser = bodyParser.json();
 
 const port = process.env.PORT || 18908;
 
-app.post("/api/login", jsonParser, login);
+app.post("/api/login", jsonParser, authToken, login);
 app.post("/api/register", jsonParser, register);
 
 app.listen(port, () => {

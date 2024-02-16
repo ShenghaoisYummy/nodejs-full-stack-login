@@ -24,11 +24,13 @@ export async function login(req, res) {
         res.status(401).json({ message: "Password not match", code: 3 });
         return;
       }
+
       const userTokenInfo = {
-        username,
-        password: user.password, //hashed
+        username: username,
+        password: user.password,
       };
-      const token = genToken({ username: user.username }, "1h");
+
+      const token = genToken(userTokenInfo, "1h");
 
       res.status(200).json({ message: "Login success", code: 0, token });
       return;
