@@ -20,6 +20,7 @@ export async function login(req, res) {
       return;
     } else {
       const match = await bcrypt.compare(password, user.password);
+
       if (!match) {
         res.status(401).json({ message: "Password not match", code: 3 });
         return;
@@ -27,7 +28,7 @@ export async function login(req, res) {
 
       const userTokenInfo = {
         username: username,
-        password: user.password,
+        password: password,
       };
 
       const token = genToken(userTokenInfo, "1h");

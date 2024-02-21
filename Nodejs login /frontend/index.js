@@ -136,7 +136,6 @@ async function checkToken() {
 
   const configuration = {
     headers: {
-      "Content-Type": "application/json", // Specifies the content type of the request body
       authorization: `Bearer ${token}`, // Example of including an authorization token
     },
   };
@@ -147,7 +146,7 @@ async function checkToken() {
 
     if (response.code === 0) {
       dom.welcomeUsername.textContent = response.username;
-      animation.LoginToWelcome;
+      animation.LoginToWelcome();
       response.token && localStorage.setItem("token", response.token);
     }
   } catch (err) {

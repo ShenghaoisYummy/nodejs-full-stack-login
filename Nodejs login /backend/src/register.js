@@ -10,41 +10,35 @@ export async function register(req, res) {
   console.log(password);
   try {
     const users = await getUsers();
+    const user = users.find((user) => user.username === username);
 
-    if (!(users && Array.isArray(users) && users.length > 0)) {
-      res.status(500).json({ message: "No user found", code: 2 });
+    if (user) {
+      res.status(409).json({
+        message: "User already exists",
+        code: "1",
+        username: username,
+      });
+      return;
+    } else if (!password) {
+      res.status(409).json({
+        message: "Password is empty",
+        code: "2",
+        username: username,
+      });
       return;
     } else {
-      const user = users.find((user) => user.username === username);
+      const saltRounds = await getSaltRounds();
+      console.log(saltRounds);
 
-      if (user) {
-        res.status(409).json({
-          message: "User already exists",
-          code: "1",
-          username: username,
-        });
-        return;
-      } else if (!password) {
-        res.status(409).json({
-          message: "Password is empty",
-          code: "2",
-          username: username,
-        });
-        return;
-      } else {
-        const saltRounds = await getSaltRounds();
-        console.log(saltRounds);
+      const hashedPassword = await bcrypt.hash(password, saltRounds);
 
-        const hashedPassword = await bcrypt.hash(password, saltRounds);
-
-        await axios.post(userDBPath, {
-          username: username,
-          password: hashedPassword,
-        });
-        res
-          .status(200)
-          .json({ message: "Register success", code: "0", username: username });
-      }
+      await axios.post(userDBPath, {
+        username: username,
+        password: hashedPassword,
+      });
+      res
+        .status(200)
+        .json({ message: "Register success", code: "0", username: username });
     }
   } catch (error) {
     console.log(error);
