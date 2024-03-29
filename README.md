@@ -24,4 +24,9 @@ Clone the repository to your local machine:
 ```bash
 git clone https://github.com/your-repository/fullstack-auth.git
 
+cd toyourfolder
+
+npm run setup
+npm run start
+
 
