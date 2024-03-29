@@ -28,5 +28,19 @@ cd toyourfolder
 
 npm run setup
 npm run start
+```
 
+Endpoints
+The following endpoints are available:
+
+POST /register: Register a new user.
+POST /login: Login an existing user.
+Frontend
+The frontend uses Axios for making HTTP requests to the backend, managing login and registration processes.
+
+Backend
+The backend is built with Express.js and uses Prisma to interact with the database. Passwords are hashed using Bcrypt, and JWT is used for maintaining user sessions.
+
+Security
+This application uses Bcrypt to hash user passwords before saving them to the database and JSON Web Tokens to handle authentication and protect routes.
 
