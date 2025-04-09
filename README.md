@@ -1,4 +1,4 @@
- Full-Stack Login and Registration
+## Full-Stack Login and Registration
 
 This project is a full-stack application for user authentication which includes features for user login and registration.
 
