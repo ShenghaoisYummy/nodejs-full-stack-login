@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "buildCommand": "cd 'Nodejs login /frontend' && npm install && npm run build",
+  "buildCommand": "cd 'Nodejs login /frontend' && npm ci && npm run build",
   "outputDirectory": "Nodejs login /frontend/dist",
   "routes": [
     {
