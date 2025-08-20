@@ -13,14 +13,8 @@
     }
   ],
   "functions": {
-    "api/login.js": {
-      "runtime": "nodejs18.x"
-    },
-    "api/register.js": {
-      "runtime": "nodejs18.x"
-    },
-    "api/profile.js": {
-      "runtime": "nodejs18.x"
+    "api/*.js": {
+      "runtime": "@vercel/node@3.0.7"
     }
   },
   "env": {
