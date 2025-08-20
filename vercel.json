@@ -1,14 +1,7 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "frontend/package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "dist"
-      }
-    }
-  ],
+  "buildCommand": "cd 'Nodejs login /frontend' && npm install && npm run build",
+  "outputDirectory": "Nodejs login /frontend/dist",
   "routes": [
     {
       "src": "/api/(.*)",
@@ -16,7 +9,7 @@
     },
     {
       "src": "/(.*)",
-      "dest": "/frontend/$1"
+      "dest": "/$1"
     }
   ],
   "functions": {
@@ -24,6 +17,9 @@
       "runtime": "nodejs18.x"
     },
     "api/register.js": {
+      "runtime": "nodejs18.x"
+    },
+    "api/profile.js": {
       "runtime": "nodejs18.x"
     }
   },
