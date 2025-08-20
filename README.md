@@ -152,7 +152,61 @@ nodejs-full-stack-login/
 
 ## 🚀 Deployment
 
-### Environment Setup
+### Deploy to Vercel (Recommended)
+
+This project is optimized for Vercel deployment with serverless functions.
+
+#### 1. Prepare for Deployment
+
+```bash
+# Clone your repository
+git clone https://github.com/yourusername/nodejs-full-stack-login.git
+cd nodejs-full-stack-login
+
+# Install Vercel CLI globally
+npm install -g vercel
+```
+
+#### 2. Deploy to Vercel
+
+```bash
+# Login to Vercel (first time only)
+vercel login
+
+# Deploy to Vercel
+vercel
+
+# For production deployment
+vercel --prod
+```
+
+#### 3. Set Environment Variables
+
+In your Vercel dashboard or via CLI, set:
+
+```bash
+# Set environment variables via CLI
+vercel env add JWT_SECRET
+# Enter your secure JWT secret when prompted
+
+# Or set in Vercel dashboard
+# Go to your project → Settings → Environment Variables
+```
+
+**Required Environment Variables:**
+- `JWT_SECRET`: A secure secret key for JWT token generation
+
+#### 4. Custom Domain (Optional)
+
+```bash
+# Add custom domain
+vercel domains add yourdomain.com
+vercel domains add www.yourdomain.com
+```
+
+### Alternative Deployments
+
+#### Manual Production Build
 ```bash
 # Create environment file
 cp .env.example .env
@@ -161,15 +215,57 @@ cp .env.example .env
 NODE_ENV=production
 JWT_SECRET=your-super-secure-secret-key
 PORT=3000
-```
 
-### Production Build
-```bash
 # Build frontend for production
 cd frontend && npm run build
 
 # Start production server
 cd backend && npm start
+```
+
+#### Deploy to Other Platforms
+
+The project structure supports deployment to:
+- **Netlify** (with Netlify Functions)
+- **Railway**
+- **Render**
+- **Heroku**
+
+### Vercel Configuration
+
+The project includes:
+- `vercel.json` - Vercel configuration
+- `/api` directory - Serverless functions
+- Automatic build configuration
+- Environment variable management
+
+### 📋 Deployment Checklist
+
+Before deploying to production:
+
+- [ ] Set `JWT_SECRET` environment variable
+- [ ] Test all API endpoints locally
+- [ ] Verify frontend builds successfully (`cd frontend && npm run build`)
+- [ ] Update GitHub repository with latest changes
+- [ ] Configure custom domain (if needed)
+- [ ] Test authentication flow on deployed site
+
+### 🔧 Troubleshooting Deployment
+
+**Common Issues:**
+
+1. **Build Failures**: Ensure all dependencies are in `package.json`
+2. **API Errors**: Check environment variables are set correctly
+3. **CORS Issues**: Verify API origins in serverless functions
+4. **Token Issues**: Ensure `JWT_SECRET` is set and consistent
+
+**Debug Commands:**
+```bash
+# View deployment logs
+vercel logs [deployment-url]
+
+# Check environment variables
+vercel env ls
 ```
 
 ## 🤝 Contributing

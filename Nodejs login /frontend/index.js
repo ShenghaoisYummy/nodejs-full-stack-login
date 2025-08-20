@@ -3,8 +3,9 @@ import axios from "axios";
 import * as dom from "./src/dom.js";
 import * as animation from "./src/animation.js";
 import * as utils from "./src/utils.js";
+import { API_BASE_URL, API_ENDPOINTS } from "./src/config.js";
 
-const backendPath = "http://localhost:18765";
+const backendPath = API_BASE_URL;
 
 const toLoginBtnFunc = (event) => {
   event.preventDefault();
@@ -40,7 +41,7 @@ async function login(event) {
 
     console.log(response);
 
-    if (response.code === 0) {
+    if (response.code === 'SUCCESS') {
       dom.welcomeUsername.textContent = dom.username.value;
       utils.clearDomValue([dom.username, dom.password]);
       animation.showCorrect();
@@ -91,8 +92,9 @@ async function register(event) {
         errResponse = err?.response?.data;
       });
 
-    switch (Number(response?.code || errResponse?.code)) {
-      case 0:
+    const responseCode = response?.code || errResponse?.code;
+    switch (responseCode) {
+      case 'SUCCESS':
         animation.showCorrect();
         utils.clearDomValue([
           dom.new_username,
@@ -101,12 +103,13 @@ async function register(event) {
         ]);
         animation.RegisterToLogin();
         break;
-      case 1:
+      case 'USER_EXISTS':
         console.log("Already have same username");
         animation.showError();
         break;
-      case 2:
-        console.log("Password is empty");
+      case 'MISSING_CREDENTIALS':
+      case 'WEAK_PASSWORD':
+        console.log("Invalid input");
         animation.showError();
         break;
       default:
@@ -136,21 +139,22 @@ async function checkToken() {
 
   const configuration = {
     headers: {
-      authorization: `Bearer ${token}`, // Example of including an authorization token
+      authorization: `Bearer ${token}`,
     },
   };
   try {
     const response = await axios
-      .post(backendPath + "/api/login", { message: "token" }, configuration)
+      .get(backendPath + API_ENDPOINTS.PROFILE, configuration)
       .then((res) => res.data);
 
-    if (response.code === 0) {
-      dom.welcomeUsername.textContent = response.username;
+    if (response.code === 'SUCCESS') {
+      dom.welcomeUsername.textContent = response.user.username;
       animation.LoginToWelcome();
-      response.token && localStorage.setItem("token", response.token);
     }
   } catch (err) {
     console.log(err);
+    // If token is invalid, remove it
+    localStorage.removeItem("token");
   }
 }
 
