@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Full-stack authentication system with Node.js, Express, and Vite",
   "main": "index.js",
+  "engines": {
+    "node": "18.x"
+  },
   "scripts": {
     "install:frontend": "cd frontend && npm install",
     "install:backend": "cd backend && npm install",
